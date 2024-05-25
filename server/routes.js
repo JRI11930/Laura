@@ -6,6 +6,10 @@ module.exports = function(app, dbService){
         response.json({'message': 'Allright'});
     });
 
+    app.get("/landingpage", (request, response)=>{
+        response.json({'messages': 'Ya se conectó con el back'});
+      });
+
     // $USERS
 
     app.get('/users', (request, response)=>{

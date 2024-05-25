@@ -5,7 +5,7 @@ function App() {
  const [backendData, setBackendData] = useState({}) // Inicializa el estado con un objeto vacío
 
  useEffect(() => {
-    fetch("/landingpage").then(
+    fetch('/landingpage').then(
       response => response.json()
     ).then(
       data => {

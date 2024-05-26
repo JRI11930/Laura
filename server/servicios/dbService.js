@@ -12,29 +12,54 @@ const dbService = () => {
         }
     })
 
-    const users = 'users'
-    const courses = 'courses'
-
-    const readUsers = () => {
-        return knex(users).select('*')
-    }
-
+    // $ USERS 
     const createUser = ({username, password, email}) =>{
-        return  knex(users).insert({
-                username: username,
-                password: password,
-                email: email,
+        return  knex('users').insert({
+            username: username,
+            password: password,
+            email: email,
         }); // $retorna una promesa
     };
+    
+    const readUsers = () => {
+        return knex('users').select('*')
+    }
 
+    // $ COURSES 
     const readCourses = ()=>{
-        return knex(courses).select('*')
+        return knex('courses').select('*')
+    }
+
+     // $ LESSONS
+    const readLessons = ()=>{
+        return knex('lessons').select('*')
+    }
+    
+    // $ USER - COURSES
+
+    const registerCourse = ({userID, courseID}) =>{
+        return knex('user_courses').insert({
+            userID: userID,
+            courseID: courseID,
+        });
+    }
+
+    // $ USER - LESSONS
+    const registerLesson = ({userID, lessonID, completed}) =>{
+        return knex('user_lessons').insert({
+            userID: userID,
+            lessonID: lessonID,
+            completed: completed,
+        });
     }
 
     return {
         createUser,
         readUsers,
-        readCourses
+        readCourses,
+        readLessons, 
+        registerCourse,
+        registerLesson
     }
 };
 

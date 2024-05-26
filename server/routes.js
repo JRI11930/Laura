@@ -7,7 +7,7 @@ module.exports = function(app, dbService){
     });
 
     app.get("/landingpage", (request, response)=>{
-        response.json({'messages': 'Ya se conectó con el back'});
+        response.json({'messages': 'Back connected'});
       });
 
     // $USERS
@@ -43,4 +43,37 @@ module.exports = function(app, dbService){
         })
     });
 
+    // $LESSONS 
+    app.get('/lessons', (request, response)=>{
+        dbService.readLessons()
+        .then(lessons =>{
+            response.json(lessons);
+        }).catch(e => {
+            response.status(500).json(e);
+        })
+    });
+
+    // $ USER - COURSES
+    app.post('/registerCourse', (request, response)=>{
+        const newRegister = request.body;
+        console.log(newRegister);
+        dbService.registerCourse(newRegister)
+        .then(() => {
+            response.json({"message": "Course registered successfully"});
+        }).catch(e => {
+            response.status(500).json(e);
+        });
+    })
+
+    // $ USER - LESSONS
+    app.post('/registerLesson', (request, response)=>{
+        const newRegister = request.body;
+        console.log(newRegister);
+        dbService.registerLesson(newRegister)
+        .then(() => {
+            response.json({"message": "Lesson registered successfully"});
+        }).catch(e =>{
+            response.status(500).json(e);
+        });
+    })
 };

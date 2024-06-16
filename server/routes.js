@@ -32,6 +32,22 @@ module.exports = function(app, dbService){
             });
     });
 
+    // $LOGIN
+    app.post('/login', (request, response) => {
+        const { email, password } = request.body;
+        dbService.readUsers()
+        .then(users => {
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                response.json({"message": "Login successful"});
+            } else {
+                response.status(401).json({"message": "Invalid credentials"});
+            }
+        }).catch(e => {
+            response.status(500).json(e);
+        });
+    });
+
     // $COURSES
 
     app.get('/courses', (request, response)=>{

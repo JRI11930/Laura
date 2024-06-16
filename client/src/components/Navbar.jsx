@@ -1,60 +1,34 @@
-import React, { useState } from "react";
-import Logo from "../assets/Logo.svg";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Home as HomeIcon, School as SchoolIcon, AutoStories as AutoStoriesIcon, CommentRounded as CommentRoundedIcon, Login as LoginIcon, PersonAdd as PersonAddIcon } from '@mui/icons-material';
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Box, Divider } from '@mui/material';
 import { HiOutlineBars3 } from "react-icons/hi2";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
-import SchoolIcon from '@mui/icons-material/School';
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
-import LoginIcon from '@mui/icons-material/Login';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Logo from '../assets/Logo.svg'; // Asegúrate de ajustar la ruta del logo
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const menuOptions = [
-    {
-      text: "Inicio",
-      icon: <HomeIcon />,
-    },
-    {
-        text: "Conócenos",
-        icon: <SchoolIcon />,
-      },
-    {
-        text: "Testimonios",
-        icon: <AutoStoriesIcon/>,
-    },
-    {
-        text: "Contacto",
-        icon: <CommentRoundedIcon />,
-    },
-    {
-      text: "Inicia Sesión",
-      icon: <LoginIcon />,
-    },
-    {
-      text: "Únete",
-      icon: <PersonAddIcon />,
-    },
+    { text: "Inicio", icon: <HomeIcon />, link: "/" },
+    { text: "Conócenos", icon: <SchoolIcon />, link: "/conocenos" },
+    { text: "Testimonios", icon: <AutoStoriesIcon />, link: "/testimonios" },
+    { text: "Contacto", icon: <CommentRoundedIcon />, link: "/contacto" },
+    { text: "Inicia Sesión", icon: <LoginIcon />, link: "/login" },
+    { text: "Únete", icon: <PersonAddIcon />, link: "/unete" },
   ];
+  
   return (
     <nav>
       <div className="nav-logo-container">
-        <img src={Logo} alt="" width="120"  />
+      <Link to="/">
+          <img src={Logo} alt="Logo" width="120" />
+        </Link>
       </div>
       <div className="navbar-links-container">
-        <a href="">Conócenos</a>
-        <a href="">Testimonios</a>
-        <a href="">Contacto</a>
-        <a href="">Inicia Sesión</a>
-        <button className="primary-button">Únete</button>
+        <Link to="/conocenos">Conócenos</Link>
+        <Link to="/testimonios">Testimonios</Link>
+        <Link to="/contacto">Contacto</Link>
+        <Link to="/login">Inicia Sesión</Link>
+        <button className="primary-button"><Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>Únete</Link></button>
       </div>
       <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
@@ -69,7 +43,7 @@ const Navbar = () => {
           <List>
             {menuOptions.map((item) => (
               <ListItem key={item.text} disablePadding>
-                <ListItemButton>
+                <ListItemButton component={Link} to={item.link}>
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} />
                 </ListItemButton>

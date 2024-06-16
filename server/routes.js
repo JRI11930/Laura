@@ -7,7 +7,7 @@ module.exports = function(app, dbService){
     });
 
     app.get("/landingpage", (request, response)=>{
-        response.json({'messages': 'Ya se conectó con el back'});
+        response.json({'messages': 'Back connected'});
       });
 
     // $USERS
@@ -32,6 +32,22 @@ module.exports = function(app, dbService){
             });
     });
 
+    // $LOGIN
+    app.post('/login', (request, response) => {
+        const { email, password } = request.body;
+        dbService.readUsers()
+        .then(users => {
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                response.json({"message": "Login successful"});
+            } else {
+                response.status(401).json({"message": "Invalid credentials"});
+            }
+        }).catch(e => {
+            response.status(500).json(e);
+        });
+    });
+
     // $COURSES
 
     app.get('/courses', (request, response)=>{
@@ -43,4 +59,37 @@ module.exports = function(app, dbService){
         })
     });
 
+    // $LESSONS 
+    app.get('/lessons', (request, response)=>{
+        dbService.readLessons()
+        .then(lessons =>{
+            response.json(lessons);
+        }).catch(e => {
+            response.status(500).json(e);
+        })
+    });
+
+    // $ USER - COURSES
+    app.post('/registerCourse', (request, response)=>{
+        const newRegister = request.body;
+        console.log(newRegister);
+        dbService.registerCourse(newRegister)
+        .then(() => {
+            response.json({"message": "Course registered successfully"});
+        }).catch(e => {
+            response.status(500).json(e);
+        });
+    })
+
+    // $ USER - LESSONS
+    app.post('/registerLesson', (request, response)=>{
+        const newRegister = request.body;
+        console.log(newRegister);
+        dbService.registerLesson(newRegister)
+        .then(() => {
+            response.json({"message": "Lesson registered successfully"});
+        }).catch(e =>{
+            response.status(500).json(e);
+        });
+    })
 };

@@ -81,6 +81,16 @@ module.exports = function(app, dbService){
         });
     })
 
+    app.get('/readUserCourses', (request, response) =>{
+        const userId = request.query.userId;
+        dbService.readUserCourses(userId)
+        .then(userCourses =>{
+            response.json(userCourses);
+        }).catch(e => {
+            response.status(500).json(e);
+        });
+    })
+
     // $ USER - LESSONS
     app.post('/registerLesson', (request, response)=>{
         const newRegister = request.body;

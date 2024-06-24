@@ -44,6 +44,13 @@ const dbService = () => {
         });
     }
 
+    const readUserCourses = (userId) =>{
+        return knex('user_courses')
+            .join('courses', 'user_courses.courseID', '=', 'courses.courseID' )
+            .select('name')
+            .where('userID', userId)
+    }
+
     // $ USER - LESSONS
     const registerLesson = ({userID, lessonID, completed}) =>{
         return knex('user_lessons').insert({
@@ -59,6 +66,7 @@ const dbService = () => {
         readCourses,
         readLessons, 
         registerCourse,
+        readUserCourses,
         registerLesson
     }
 };

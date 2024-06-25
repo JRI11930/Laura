@@ -1,0 +1,166 @@
+/* principal */
+.headeir {
+  margin-top: 0px;
+  background:  #ffffff;
+  height: 12vh;
+  box-shadow: 0 4px 8px 0 rgba(180, 180, 180, 0.2);
+}
+.content {
+  margin: 24px 16px;
+  padding: 20px;
+}
+.trigger-btn{
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+/*sider*/
+.sider{
+  height: 100vh;
+  position: sticky !important;
+  left: 0;
+  bottom: 0;
+  top: 0;
+}
+.logo {
+  margin: 40px 0;
+  font-size: 1.5rem;
+}
+
+.menu-bar{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-weight: 100;
+  font-size: large;
+}
+
+.ant-menu-item-selected{
+  background-color: rgb(75, 33, 214) !important;
+  color: white !important;
+}
+
+.headerrr{
+  margin-top: 1vh !important;
+  padding: 1%;
+  background-color: #ffffff;
+}
+
+/*header*/
+.header-icon{
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 25px;
+  color: rgb(81, 81, 81);
+  cursor: pointer;
+}
+.header-icon:hover{
+  background: #ffffff;
+  color: rgb(54, 14, 174);
+  cursor: pointer;
+}
+
+/*btn*/
+.ant-btn:hover{
+ color:rgb(89, 43, 226);
+background-color: rgb(245, 245, 245);
+}
+
+.ant-btn-primary {
+  background-color: rgb(89, 43, 226);
+}
+.ant-btn-primary:hover {
+  background-color: #cacaca !important;
+  color: #ffffff !important;
+}
+.primary--color {
+  color:  rgb(89, 43, 226) !important;
+}
+.primary--light--color {
+  color:  rgb(109, 70, 225) !important;
+}
+.secondary--color {
+  color:  rgb(71, 52, 128) !important;
+}
+.light--color {
+  color: #cfb3e6 !important;
+}
+.gray--color {
+  color: rgb(205, 204, 204) !important;
+}
+
+.card{
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+
+/* lista de cursos*/
+.courses-flex{
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+.course-card{
+  flex:1;
+  height: 30vh;
+  text-align: center;
+  padding: 20px;
+}
+
+/*perfil*/
+.card-profile{
+  width: 90vw;
+  margin-bottom: 10px;
+}
+
+
+/*graphs*/
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 5vh;
+}
+
+.pie-chart,
+.bar-chart {
+  flex: 1 1 auto;
+  margin: 10px;
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 300px; /* Asegúrate de que las gráficas no sean demasiado pequeñas */
+  max-width: 100%; /* Asegúrate de que las gráficas no excedan el ancho del contenedor */
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.chart-title {
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 0px;
+  color: #9f9f9f;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .chart-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+

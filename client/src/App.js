@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'; 
-import './App.css';
+import './styles/App.css';
 import Navbar from './components/Navbar'; 
 import Home from './components/Home';
 import About from './components/About';
@@ -8,53 +8,43 @@ import Testimonial from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Login from './components/Login'; 
-import Panel from './components/Panel';
+import Dashboard from './pages/Dashboard.jsx';
+import CourseList from './components/CourseList.jsx';
+import MyCourseList from './components/MyCourseList.jsx';
+import Profile from './components/Profile.jsx';
 
 function App() {
+
   return (
     <div className="App">
-      <Navbar />
       <Routes>
         <Route 
           path="/" 
           element={
             <>
+              <Navbar />
               <Home />
               <About />
               <Testimonial />
               <Contact />
+              <Footer />
             </>
           } 
         />
-        <Route path="/conocenos" element={<About />} />
-        <Route path="/panel" element={<Panel />} />
-        <Route path="/testimonios" element={<Testimonial />} />
-        <Route path="/contacto" element={<Contact />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/perfil" element={<Profile/>}/>
+        <Route path="/miscursos" element={<MyCourseList/>}/>
+        <Route path="/cursos" element={<CourseList/>}/>
         <Route path="/login" element={<Login />} />
-        <Route path="/unete" element={<div>Únete Page</div>} /> {}
       </Routes>
-      <Footer />
+      
     </div>
   );
 }
 
 export default App;
 
-/*const [backendData, setBackendData] = useState({}) // Inicializa el estado con un objeto vacío
 
- useEffect(() => {
-    fetch('/landingpage').then(
-      response => response.json()
-    ).then(
-      data => {
-      setBackendData(data)
-    }
-  )
-}, )
-
- <p>El mensaje de la ruta es: <strong>{backendData.messages}</strong></p>
-
- */
 
 
 

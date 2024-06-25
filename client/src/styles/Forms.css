@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 10vh; /* Margen superior para separar del borde del contenedor padre */
+    margin-top: 5vh; /* Margen superior para separar del borde del contenedor padre */
     background: #fff;
     padding-bottom: 30px;
+    padding-top: 30px;
     border-radius: 5%;
     width: 600px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade una sombra para mejor visualización */
@@ -17,7 +18,7 @@
     align-items: center;
     gap: 9px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .text{
@@ -91,7 +92,7 @@
 }
 .screenforms {
     background-color: rgba(50, 22, 160, 0.815);
-    background-image: linear-gradient(rgba(50, 22, 160, 0.724), rgba(19, 9, 43, 0.5)), url('assets/fondo-home.jpg');
+    background-image: linear-gradient(rgba(50, 22, 160, 0.724), rgba(19, 9, 43, 0.5)), url('../assets/fondo-home.jpg');
     background-size: cover;
     height: 95vh;
     padding-top: 20px; /* Usa padding en lugar de margin para asegurar el espaciado */

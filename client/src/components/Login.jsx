@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../Forms.css';
+import '../styles/Forms.css';
 
 import user_icon from "../assets/person.png";
 import email_icon from "../assets/email.png";
 import password_icon from "../assets/password.png";
+
+import Navbar from "./Navbar.jsx";
+import Footer from "./Footer.jsx";
 
 const Login = () => {
     const [action, setAction] = useState("Sign Up");
@@ -59,7 +62,9 @@ const Login = () => {
     };
 
     return (
-        <div className='screenforms'>
+        <>
+        <Navbar/>
+        <div className='screenforms' id="forms">
         <div className='container'>
             <div className='header'>
                 <div className='text'>{action}</div>
@@ -112,6 +117,8 @@ const Login = () => {
             </div>
         </div>
     </div>
+    <Footer/>
+    </>
     );
 };
 

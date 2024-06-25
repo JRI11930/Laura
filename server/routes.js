@@ -111,10 +111,21 @@ module.exports = function(app, dbService){
         const userId = userPromise.userID;
 
         if (userId) {
-            res.cookie('userId', userId, { maxAge: 900000, httpOnly: true })
+            res.cookie('userId', userId, { maxAge: 1000*10, httpOnly: true })
             res.send(`Welcome, user ${userId}!`);
         } else {
           res.status(401).send('User not found');
         }
-      });
+    });
+    
+    app.get('/getUserByCookie', (req, res)=>{
+        const userId = req.cookies.userId
+        dbService.readAUser(userId)
+        .then(user =>{
+            res.json(user);
+        }).catch(e => {
+            res.status(500).json(e);
+        });
+    })
+    
 };

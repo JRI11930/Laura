@@ -8,6 +8,7 @@ const { dbService } = require("./servicios/dbService");
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 require("./routes")(app, dbService());
 

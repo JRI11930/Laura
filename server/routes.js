@@ -102,4 +102,19 @@ module.exports = function(app, dbService){
             response.status(500).json(e);
         });
     })
+
+    // $ COOKIES
+
+    app.get('/setUserCookie', async (req, res) => {
+        const username = req.query.username;
+        const userPromise = await dbService.getUserIdByUsername(username);
+        const userId = userPromise.userID;
+
+        if (userId) {
+            res.cookie('userId', userId, { maxAge: 900000, httpOnly: true })
+            res.send(`Welcome, user ${userId}!`);
+        } else {
+          res.status(401).send('User not found');
+        }
+      });
 };

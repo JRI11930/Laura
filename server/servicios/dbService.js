@@ -25,6 +25,12 @@ const dbService = () => {
         return knex('users').select('*')
     }
 
+    const getUserIdByUsername = (username) => {
+        return knex('users')
+         .select('userID')
+         .where('username', username).first();
+      };
+
     // $ COURSES 
     const readCourses = ()=>{
         return knex('courses').select('*')
@@ -63,6 +69,7 @@ const dbService = () => {
     return {
         createUser,
         readUsers,
+        getUserIdByUsername,
         readCourses,
         readLessons, 
         registerCourse,

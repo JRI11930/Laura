@@ -11,6 +11,7 @@ import MyCourseList from '../components/MyCourseList.jsx';
 import AllCourseList from '../components/AllCourseList.jsx';
 import Course from '../components/Course.jsx';
 import Ayuda from '../components/Ayuda.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const { Sider, Header, Content} = Layout;
 
@@ -18,10 +19,31 @@ const Dashboard = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [selectedMenu, setSelectedMenu] = useState('2');
     const [selectedCourseId, setSelectedCourseId] = useState(null);
-    
+    const navigate = useNavigate();
+
     const menuSelectionHandler = (item) => {
         setSelectedMenu(item.key);
       };
+
+      const handleLogout = async () => {
+        try {
+            const response = await fetch('/logout', {
+                method: 'GET',
+                credentials: 'include', // Incluir cookies en la solicitud
+            });
+            if (response.ok) {
+                const message = await response.json();
+                alert(message.message);
+                navigate('/'); // Redirigir a la página raíz después del logout
+            } else {
+                const error = await response.json();
+                alert(`Error: ${error.message}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error connecting to server');
+        }
+    };
 
    const renderContent = () => {
         switch (selectedMenu) {
@@ -72,7 +94,7 @@ const Dashboard = () => {
             size='circle'
             icon={<LogoutOutlined className='logout-btn' style={{fontSize:'25px'}}/>}
             className="logout-button"
-            onClick={() => console.log('Logout')}
+            onClick={handleLogout} // Llama a la función handleLogout al hacer clic en el botón de logout
             style = {{padding:'25px'}}
             />
         </Layout>

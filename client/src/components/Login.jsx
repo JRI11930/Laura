@@ -10,7 +10,7 @@ import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 
 const Login = () => {
-    const [action, setAction] = useState("Sign Up");
+    const [action, setAction] = useState("Login");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,12 +35,13 @@ const Login = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(payload),
+                credentials: 'include',
             });
             if (response.ok) {
                 const message = await response.json();
                 alert(message.message);
                 if (!isSignUp){
-                navigate('/panel');
+                navigate('/dashboard');
                 }
             } else {
                 const error = await response.json();

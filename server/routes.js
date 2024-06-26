@@ -11,6 +11,13 @@ module.exports = function(app, dbService){
       });
 
     // $USERS
+    const validateCookieMiddleware = (req, res, next) => {
+        const userId = req.cookies.userId;
+        if (!userId) {
+          return res.status(401).json({ "message": "Unauthorized" });
+        }
+        next(); // Si la cookie es válida, permite que la solicitud continúe
+    };
 
     app.get('/users', (request, response)=>{
         dbService.readUsers()
@@ -32,8 +39,19 @@ module.exports = function(app, dbService){
             });
     });
 
+     // Endpoint para actualizar el perfil de usuario
+     app.post('/updateUserProfile', validateCookieMiddleware, (request, response) => {
+        const updatedProfile = request.body; // Datos del perfil actualizados
+        dbService.updateUserProfile(updatedProfile)
+            .then(() => {
+                response.json({"message": "Perfil actualizado correctamente"});
+            }).catch(e => {
+                response.status(500).json(e);
+            });
+    });
+
     // $LOGIN
-    app.get('/login', (request, response) => {
+    app.post('/login', (request, response) => {
         const { email, password } = request.body;
         dbService.readUsers()
         .then(users => {
@@ -50,13 +68,6 @@ module.exports = function(app, dbService){
         });
     });
 
-    const validateCookieMiddleware = (req, res, next) => {
-        const userId = req.cookies.userId;
-        if (!userId) {
-          return res.status(401).json({ "message": "Unauthorized" });
-        }
-        next(); // Si la cookie es válida, permite que la solicitud continúe
-    };
 
     app.get('/logout', (req, res) => {
         res.clearCookie('userId');
@@ -90,7 +101,7 @@ module.exports = function(app, dbService){
         console.log(newRegister);
         dbService.registerCourse(newRegister)
         .then(() => {
-            response.json({"message": "Course registered successfully"});
+            response.json({"message": "Te inscribiste al curso!"});
         }).catch(e => {
             response.status(500).json(e);
         });

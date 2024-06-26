@@ -18,7 +18,7 @@ const Banner = ({setSelectedMenu, setSelectedCourseId}) => {
                 </Typography.Text>
             </Flex>
             <Flex gap='large'>
-                <Button type='primary' size='large'onClick={() => handleButtonClick('1')}>Reanuda</Button>
+                <Button type='primary' size='large'onClick={() => handleButtonClick(2)}>Reanuda</Button>
                 <Button size='large'   onClick={() => setSelectedMenu('4')} >Explora más</Button>
             </Flex>
         </Flex>

@@ -30,6 +30,14 @@
   font-size: 1.5rem;
 }
 
+.logout-button {
+  position: fixed;
+  bottom: 2.5vh;
+  right: 3vw;
+  z-index: 1000;
+  border-radius:20px;
+}
+
 .menu-bar{
   display: flex;
   flex-direction: column;

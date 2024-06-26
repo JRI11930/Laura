@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Button, Flex} from 'antd';
-import {MenuUnfoldOutlined, MenuFoldOutlined} from '@ant-design/icons';
+import {MenuUnfoldOutlined, MenuFoldOutlined, LogoutOutlined} from '@ant-design/icons';
 import Sidebar from '../components/Sidebar.jsx';
 import '../styles/Dashboard.css';
 import CustomHeader from '../components/Header.jsx';
@@ -10,12 +10,15 @@ import Profile from '../components/Profile.jsx';
 import MyCourseList from '../components/MyCourseList.jsx';
 import AllCourseList from '../components/AllCourseList.jsx';
 import Course from '../components/Course.jsx';
+import Ayuda from '../components/Ayuda.jsx';
 
 const { Sider, Header, Content} = Layout;
 
 const Dashboard = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [selectedMenu, setSelectedMenu] = useState('2');
+    const [selectedCourseId, setSelectedCourseId] = useState(null);
+    
     const menuSelectionHandler = (item) => {
         setSelectedMenu(item.key);
       };
@@ -25,21 +28,23 @@ const Dashboard = () => {
           case '1':
           return(
           <>
-           <Profile />
+           <Profile/>
           </>);
           case '2':
             return (
               <>
-                <MainContent setSelectedMenu={setSelectedMenu} />
+                <MainContent setSelectedMenu={setSelectedMenu} setSelectedCourseId={setSelectedCourseId} />
                 <SideContent/>
               </>
             );
           case '3':
-            return <MyCourseList setSelectedMenu={setSelectedMenu}  />;
+            return <MyCourseList setSelectedMenu={setSelectedMenu}  setSelectedCourseId={setSelectedCourseId} />;
           case '4':
             return <AllCourseList/>;
           case '5':
-            return <Course courseId='1' />;
+            return <Course courseId={selectedCourseId} />;
+          case '6':
+            return <Ayuda/>;
           default:
               return <Dashboard />;
         }
@@ -63,6 +68,13 @@ const Dashboard = () => {
                 {renderContent()}
                 </Flex>
             </Content>
+            <Button
+            size='circle'
+            icon={<LogoutOutlined className='logout-btn' style={{fontSize:'25px'}}/>}
+            className="logout-button"
+            onClick={() => console.log('Logout')}
+            style = {{padding:'25px'}}
+            />
         </Layout>
         </Layout>
     );

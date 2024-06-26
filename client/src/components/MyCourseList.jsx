@@ -1,4 +1,5 @@
 //import { useEffect, useState } from 'react';
+import React from 'react';
 import { Flex, Card, Button, Image } from 'antd'; // Importa los componentes necesarios de Ant Design
 import courseData from '../CoursesData'; // Asegúrate de que la ruta es correcta y que los datos están en el formato esperado
 import { ReloadOutlined } from '@ant-design/icons';
@@ -8,13 +9,13 @@ const { Meta } = Card;
 // IDs de cursos para pruebas en formato de cadena
 const enrolledCourseIds = ['1', '2', '3'];
 
-const MyCourseList = ({ setSelectedMenu }) => {
+const MyCourseList = ({ setSelectedMenu, setSelectedCourseId }) => {
   // Filtrar los cursos en los que el usuario está "inscrito" (datos de prueba)
   const filteredCourses = courseData.filter(course => enrolledCourseIds.includes(course.id));
   // Función que maneja el clic en el botón
   const handleButtonClick = (courseId) => {
-    console.log('Continuar curso', courseId);
-    setSelectedMenu('5'); 
+    setSelectedCourseId(courseId);
+    setSelectedMenu('5');
   };
 
   return (

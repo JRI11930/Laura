@@ -57,7 +57,6 @@ const Profile = () => {
           ) : (
             <>
               {proffile.name}
-              <Button type="text" icon={<EditOutlined />} onClick={handleEditClick} />
             </>
           )}
         </Descriptions.Item>

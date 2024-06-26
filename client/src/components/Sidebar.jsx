@@ -28,7 +28,7 @@ const Sidebar = ({ onMenuSelect }) => {
           label: 'Mis cursos'
         },
         {
-          key: '5',
+          key: '6',
           icon: <QuestionCircleOutlined />,
           label: 'Ayuda'
         },

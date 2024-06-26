@@ -7,7 +7,7 @@ import course6 from './assets/course66.svg';
 
 const CoursesData = [
   {
-    id: '1',
+    id: 1,
     name: 'HTML',
     picture: course1,
     lessons: [
@@ -65,7 +65,7 @@ const CoursesData = [
     ],
   },
   {
-    id: '2',
+    id: 2,
     name: 'CSS',
     picture: course2,
     lessons: [
@@ -123,7 +123,7 @@ const CoursesData = [
     ],
   },
   {
-    id: '3',
+    id: 3,
     name: 'JavaScript',
     picture: course3,
     lessons: [
@@ -181,7 +181,7 @@ const CoursesData = [
     ],
   },
   {
-    id: '4',
+    id: 4,
     name: 'Responsive Design',
     picture: course4,
     lessons: [
@@ -222,7 +222,7 @@ const CoursesData = [
     ],
   },
   {
-    id: '5',
+    id: 5,
     name: 'Node.js',
     picture: course5,
     lessons: [
@@ -263,7 +263,7 @@ const CoursesData = [
     ],
   },
   {
-    id: '6',
+    id: 6,
     name: 'SQL',
     picture: course6,
     lessons: [

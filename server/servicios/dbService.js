@@ -35,6 +35,20 @@ const dbService = () => {
         return knex('users').select('*').where('userID', userid).first();
     }
 
+    // Actualizar perfil de usuario
+    const updateUserProfile = (updatedProfile) => {
+        const { username, email } = updatedProfile;
+        const userId = updatedProfile.userID; // Asegúrate de tener el userID en el objeto actualizado
+
+        // Ejemplo de actualización con knex
+        return knex('users')
+            .where('userID', userId)
+            .update({
+                username: username,
+                email: email,
+            });
+    };
+
     // $ COURSES 
     const readCourses = ()=>{
         return knex('courses').select('*')
@@ -56,9 +70,8 @@ const dbService = () => {
 
     const readUserCourses = (userId) =>{
         return knex('user_courses')
-            .join('courses', 'user_courses.courseID', '=', 'courses.courseID' )
-            .select('name')
-            .where('userID', userId)
+            .select('courseID')
+            .where('userID','=',userId)
     }
 
     // $ USER - LESSONS
@@ -77,6 +90,7 @@ const dbService = () => {
         readUsers,
         getUserIdByUsername,
         readAUser,
+        updateUserProfile,
         readCourses,
         readLessons, 
         registerCourse,

@@ -25,6 +25,16 @@ const dbService = () => {
         return knex('users').select('*')
     }
 
+    const getUserIdByUsername = (username) => {
+        return knex('users')
+         .select('userID')
+         .where('username', username).first();
+    };
+
+    const readAUser = (userid) =>{
+        return knex('users').select('*').where('userID', userid).first();
+    }
+
     // $ COURSES 
     const readCourses = ()=>{
         return knex('courses').select('*')
@@ -40,7 +50,7 @@ const dbService = () => {
     const registerCourse = ({userID, courseID}) =>{
         return knex('user_courses').insert({
             userID: userID,
-            courseID: courseID,
+            courseID: courseID
         });
     }
 
@@ -52,22 +62,26 @@ const dbService = () => {
     }
 
     // $ USER - LESSONS
-    const registerLesson = ({userID, lessonID, completed}) =>{
-        return knex('user_lessons').insert({
-            userID: userID,
-            lessonID: lessonID,
-            completed: completed,
-        });
+    
+    const completeLesson = ({userId, courseId}) =>{
+        return knex('user_courses')
+            .where('userID', userId)
+            .andWhere('courseID', courseId)
+            .update({
+                'Completed': true
+            })
     }
 
     return {
         createUser,
         readUsers,
+        getUserIdByUsername,
+        readAUser,
         readCourses,
         readLessons, 
         registerCourse,
         readUserCourses,
-        registerLesson
+        completeLesson
     }
 };
 

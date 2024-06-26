@@ -33,24 +33,39 @@ module.exports = function(app, dbService){
     });
 
     // $LOGIN
-    app.post('/login', (request, response) => {
+    app.get('/login', (request, response) => {
         const { email, password } = request.body;
         dbService.readUsers()
         .then(users => {
-            const user = users.find(user => user.email === email && user.password === password);
-            if (user) {
-                response.json({"message": "Login successful"});
-            } else {
-                response.status(401).json({"message": "Invalid credentials"});
-            }
+          const user = users.find(user => user.email === email && user.password === password);
+          if (user) {
+            // Establecer cookie con el ID del usuario
+            response.cookie('userId', user.userID, { maxAge: 1000 * 60 * 60});
+            response.json({ "message": "Login successful" });
+          } else {
+            response.status(401).json({ "message": "Invalid credentials" });
+          }
         }).catch(e => {
-            response.status(500).json(e);
+          response.status(500).json(e);
         });
+    });
+
+    const validateCookieMiddleware = (req, res, next) => {
+        const userId = req.cookies.userId;
+        if (!userId) {
+          return res.status(401).json({ "message": "Unauthorized" });
+        }
+        next(); // Si la cookie es válida, permite que la solicitud continúe
+    };
+
+    app.get('/logout', (req, res) => {
+        res.clearCookie('userId');
+        res.json({ "message": "Logged out successfully" });
     });
 
     // $COURSES
 
-    app.get('/courses', (request, response)=>{
+    app.get('/courses', validateCookieMiddleware, (request, response)=>{
         dbService.readCourses()
         .then(courses =>{
             response.json(courses);
@@ -60,7 +75,7 @@ module.exports = function(app, dbService){
     });
 
     // $LESSONS 
-    app.get('/lessons', (request, response)=>{
+    app.get('/lessons', validateCookieMiddleware, (request, response)=>{
         dbService.readLessons()
         .then(lessons =>{
             response.json(lessons);
@@ -70,7 +85,7 @@ module.exports = function(app, dbService){
     });
 
     // $ USER - COURSES
-    app.post('/registerCourse', (request, response)=>{
+    app.post('/registerCourse', validateCookieMiddleware, (request, response)=>{
         const newRegister = request.body;
         console.log(newRegister);
         dbService.registerCourse(newRegister)
@@ -81,7 +96,7 @@ module.exports = function(app, dbService){
         });
     })
 
-    app.get('/readUserCourses', (request, response) =>{
+    app.get('/readUserCourses', validateCookieMiddleware, (request, response) =>{
         const userId = request.query.userId;
         dbService.readUserCourses(userId)
         .then(userCourses =>{
@@ -92,14 +107,29 @@ module.exports = function(app, dbService){
     })
 
     // $ USER - LESSONS
-    app.post('/registerLesson', (request, response)=>{
-        const newRegister = request.body;
-        console.log(newRegister);
-        dbService.registerLesson(newRegister)
+    app.post('/completeLesson', validateCookieMiddleware, (req, res) => {
+        const {userId, courseId} = req.body;
+        console.log(req.body)
+        dbService.completeLesson(userId, courseId)
         .then(() => {
-            response.json({"message": "Lesson registered successfully"});
-        }).catch(e =>{
-            response.status(500).json(e);
+            res.json({"meessage": "Lección completada con éxito"});
+        }).catch(e => {
+            res.status(550).json(e);
+        });
+    });
+
+    // $ COOKIES
+    
+    app.get('/getUserByCookie', (req,res)=>{
+        const ObjUserId = req.cookies
+        console.log(ObjUserId.userId)
+        dbService.readAUser(ObjUserId.userId)
+        .then(user =>{
+            console.log(user)
+            res.json(user);
+        }).catch(e => {
+            res.status(500).json({"message": "something went wrong"});
         });
     })
+    
 };

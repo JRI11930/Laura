@@ -50,7 +50,7 @@ const dbService = () => {
     const registerCourse = ({userID, courseID}) =>{
         return knex('user_courses').insert({
             userID: userID,
-            courseID: courseID,
+            courseID: courseID
         });
     }
 
@@ -62,12 +62,14 @@ const dbService = () => {
     }
 
     // $ USER - LESSONS
-    const registerLesson = ({userID, lessonID, completed}) =>{
-        return knex('user_lessons').insert({
-            userID: userID,
-            lessonID: lessonID,
-            completed: completed,
-        });
+    
+    const completeLesson = ({userId, courseId}) =>{
+        return knex('user_courses')
+            .where('userID', userId)
+            .andWhere('courseID', courseId)
+            .update({
+                'Completed': true
+            })
     }
 
     return {
@@ -79,7 +81,7 @@ const dbService = () => {
         readLessons, 
         registerCourse,
         readUserCourses,
-        registerLesson
+        completeLesson
     }
 };
 

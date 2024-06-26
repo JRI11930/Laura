@@ -6,26 +6,22 @@ Laura es una innovadora aplicación web diseñada para revolucionar el aprendiza
 Con Laura, puedes acceder a contenido educativo cuidadosamente curado por expertos en las distintas áreas ofrecidas en la plataforma y seguir tu progreso a través de una interfaz intuitiva y atractiva. Ya seas un principiante que busca dar sus primeros pasos en el mundo tech, o un profesional experimentado que quiere mantenerse actualizado con las últimas tendencias, Laura es tu compañero ideal en el viaje del aprendizaje tecnológico.
 
 ## 🚀 Características
-#### Amplia variedad de temas tech
-* Programación
-* Desarrollo web
-* Inteligencia Artificial
---- 
-* Acceso desde cualquier dispositivo
-* Compatible con móviles, tabletas y PCs
---- 
+* Amplia variedad de temas tech
+  * Programación
+  * Desarrollo web
+  * Inteligencia Artificial
+  * Ciencia de Datos
 * Interfaz intuitiva y fácil de usar
 * Navegación simplificada
 * Recursos educativos de alta calidad
 * Cursos interactivos
-* Tutoriales en video
-* Ejercicios prácticos
+* Tutoriales en video*
+* Ejercicios prácticos*
 
 
 ## 📋 Requisitos
 
-  (La aplicación fue desarrollada y probada en Window 11)
-  * Node.js >= 20.x
+  * node.js >= 20.x
   * npm >= 10.x
   * MySQL Workbench >= 8.0
   * Visual Studio Code >= 1.73.1
@@ -66,16 +62,16 @@ El puerto y el host de la base de datos deben coincidir con los especificados en
 
 ## 🛠 Uso
 Para iniciar la aplicación, hacer pruebas o desarrollar actualizaciones:
-  * 1. Abre dos instancias de la terminal de tu elección (Recuerda que la app se desarrolló en Windows 11)
-  * 2. En una instancia, situada en el directorio `server`, ejecuta: `npm run dev` para iniciar el servidor
-  * 3. En la otra instancia, situada en el directorio `client`, ejecuta: `npm start` para iniciar la aplicación
-  * 4. La aplicación estará disponible en `http://localhost:3000`
+  * 1. Abre dos instancias de la terminal de tu elección.
+  * 2. En una instancia, situada en el directorio **server**, ejecuta: *npm run dev* para iniciar el servidor
+  * 3. En la otra instancia, situada en el directorio **client**, ejecuta: *npm start* para iniciar la aplicación
+  * 4. La aplicación estará disponible en **http://localhost:5000**
 
 ## Documentación
-La documentacion de la API de Laura se encuentra en `DOCUMENTATION.md` en este mismo repositorio
+La documentacion de la API de Laura se encuentra en *DOCUMENTATION.md* en este mismo repositorio
 
 ## 📞 Soporte
-Si encuentras algún problema o tienes alguna duda contáctanos en laura.support@gmail.com
+Si encuentras algún problema o tienes alguna duda, [contáctanos](laura.support@gmail.com)
 
 ## 🧑‍💻 Contribuciones
 ¡Las contribuciones son bienvenidas, ayúdanos a mejorar Laura! 😊
@@ -83,10 +79,10 @@ Si encuentras algún problema o tienes alguna duda contáctanos en laura.support
 ## 📜 Licencia
 Este proyecto está bajo la licencia MIT.
 
-¡Gracias por usar Laura! ❤️
 
---- 
-
+# ¡Gracias por usar Laura! ❤️
 Por que aprender, es crecer 
 
 Laura® v1.0.0
+ 
+ **Algunas características pueden no estar disponibles para la versión actual*
